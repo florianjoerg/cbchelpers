@@ -21,6 +21,11 @@ class UniColors(Enum):
     BLACK = '#000000'    # black
     WHITE = '#ffffff' # white
 
+    @classmethod
+    def show(cls) -> None:
+        for name, value in map(lambda x: (x.name,x.value), cls._member_map_.values()):
+            print(f"{name:8s} : {value}")
+
     def alpha(self, value: float):
         if ".plot(" in inspect.stack()[1].code_context[0]:
             warnings.warn(f"During plotting use plt.plot(x,y,*args, **kwargs, alpha={value})", UserWarning)
@@ -45,6 +50,7 @@ def test_defaultcolors():
     import matplotlib
     import matplotlib.pyplot as plt
     import numpy as np
+    UniColors.show()
     UniColors.set_as_default()
     #matplotlib.rcParams['axes.prop_cycle'] = matplotlib.cycler(color=UniColors.defaultcolors)
     x = np.linspace(0, 20, 100)
