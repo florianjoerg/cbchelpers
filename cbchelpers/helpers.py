@@ -6,10 +6,45 @@
 # sys.path.append("/home/florian/pythonfiles")
 # from helpers import msd_com, msd_mj
 
-import sys
+import sys, os
 import warnings
+import logging
 
 import numpy as np
+
+
+
+def setup_logger(filename=None, replace=True):
+    if filename is None:
+        filename = "logfile.log"
+    if not replace and os.path.exists(filename):
+        os.rename(filename, "old_" + filename)
+    logging.basicConfig(filename=filename, filemode="w")
+    logger = logging.getLogger()
+    logger.setLevel(logging.DEBUG)
+
+    return logger
+
+class Tee:
+    def __init__(self, out1, out2):
+        self.out1 = out1
+        self.out2 = out2
+
+    def write(self, *args, **kwargs):
+        self.out1.write(*args, **kwargs)
+        self.out2.write(*args, **kwargs)
+
+    def flush(self):
+        pass
+
+def log_print(filename=None, replace=True):
+    if filename is None:
+        filename = "logfile.log"
+    if not replace and os.path.exists(filename):
+        os.rename(filename, "old_" + filename)
+    f = open(filename, "w")
+    backup = sys.stdout
+    sys.stdout = Tee(sys.stdout, f)
 
 
 def prettify(string: str) -> str:
@@ -29,6 +64,14 @@ def prettify(string: str) -> str:
         return "Ac"
     if string == "IM":
         return "Im"
+    if string == "MEOH":
+        return "MeOH"
+    if string == "MEOH2":
+        return "$\mathrm{MeOH_2^+}$"
+    if string == "HPTS":
+        return "$\mathrm{HPTS^{4-}}$"
+    if string == "HPTSH":
+        return "$\mathrm{HPTSH^{3-}}$"
     else:
         warnings.warn(f"Could not prettify {orig_string}", UserWarning)
         return orig_string

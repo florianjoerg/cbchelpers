@@ -1,7 +1,8 @@
 from enum import Enum
 import warnings
 import inspect
-import sys
+#import sys
+
 class UniColors(Enum):
     BLUE = '#0063a6'   # blue
     BLUE66 = '#0063a655' # blue 66% noch da(55)
@@ -27,4 +28,39 @@ class UniColors(Enum):
             raise RuntimeError("alpha value has to be between 0 and 1")
         value *= 100
         return self.value + hex(int(value))[2:] # we do not want the 0x identifier
+    
+    @classmethod
+    @property
+    def defaultcolors(cls) -> list:
+        return cls.BLUE.value, cls.ORANGE.value, cls.RED.value, cls.GREEN.value, cls.YELLOW.value, cls.MINT.value, cls.BLACK.value
+
+    @classmethod
+    def set_as_default(cls) -> None:
+        import matplotlib
+        matplotlib.rcParams['axes.prop_cycle'] = matplotlib.cycler(color=cls.defaultcolors)
         
+
+def test_defaultcolors():
+    #uc = UniColors()
+    import matplotlib
+    import matplotlib.pyplot as plt
+    import numpy as np
+    UniColors.set_as_default()
+    #matplotlib.rcParams['axes.prop_cycle'] = matplotlib.cycler(color=UniColors.defaultcolors)
+    x = np.linspace(0, 20, 100)
+
+    fig, axes = plt.subplots(nrows=2)
+    
+    for i in range(10):
+        axes[0].plot(x, i * (x - 10)**2)
+    
+    for i in range(10):
+        axes[1].plot(x, i * np.cos(x))
+    
+    plt.show()
+
+def main():
+    test_defaultcolors()
+
+if __name__ == "__main__":
+    main()
