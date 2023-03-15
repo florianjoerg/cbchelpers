@@ -22,8 +22,10 @@ class UniColors(Enum):
     WHITE = '#ffffff' # white
 
     @classmethod
-    def show(cls) -> None:
+    def show(cls, short=False) -> None:
         for name, value in map(lambda x: (x.name,x.value), cls._member_map_.values()):
+            if short and any(c.isdigit() for c in name):
+                continue
             print(f"{name:8s} : {value}")
 
     def alpha(self, value: float):
@@ -51,6 +53,8 @@ def test_defaultcolors():
     import matplotlib.pyplot as plt
     import numpy as np
     UniColors.show()
+    print("now short")
+    UniColors.show(short=True)
     UniColors.set_as_default()
     #matplotlib.rcParams['axes.prop_cycle'] = matplotlib.cycler(color=UniColors.defaultcolors)
     x = np.linspace(0, 20, 100)
