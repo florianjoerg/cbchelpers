@@ -2,8 +2,26 @@ from enum import Enum
 import warnings
 import inspect
 #import sys
+import matplotlib as mpl
 
 class UniColors(Enum):
+    @staticmethod
+    def _register(name, colors):
+        my_cmap = mpl.colors.LinearSegmentedColormap.from_list(name, colors)
+        my_cmap_r = my_cmap.reversed()
+        mpl.colormaps.register(cmap=my_cmap)
+        mpl.colormaps.register(cmap=my_cmap_r)
+    @classmethod
+    def _register_mpl_colormaps(cls):
+        colors = [cls.BLUE.value, cls.ORANGE.value, cls.YELLOW.value, cls.RED.value]
+        cls._register("mycmap", colors)
+        colors = [cls.BLACK.value, cls.RED.value, cls.ORANGE.value, cls.YELLOW.value]
+        cls._register("uni_inferno", colors)
+
+    @classmethod
+    def _build(cls):
+        cls._register_mpl_colormaps()
+
     BLUE = '#0063a6'   # blue
     BLUE66 = '#0063a655' # blue 66% noch da(55)
     BLUE33 = '#0063a6AA' # blue 33% noch da (AA -> 66% von 255(fully transparent) in hex)
@@ -45,6 +63,9 @@ class UniColors(Enum):
     def set_as_default(cls) -> None:
         import matplotlib
         matplotlib.rcParams['axes.prop_cycle'] = matplotlib.cycler(color=cls.defaultcolors)
+
+UniColors._build()
+    
         
 
 def test_defaultcolors():
@@ -56,6 +77,7 @@ def test_defaultcolors():
     print("now short")
     UniColors.show(short=True)
     UniColors.set_as_default()
+    print(matplotlib.colormaps["mycmap"])
     #matplotlib.rcParams['axes.prop_cycle'] = matplotlib.cycler(color=UniColors.defaultcolors)
     x = np.linspace(0, 20, 100)
 
