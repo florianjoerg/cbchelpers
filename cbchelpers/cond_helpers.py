@@ -1,7 +1,35 @@
 import re
 import warnings
 from dataclasses import dataclass
+from pathlib import Path
 from typing import ClassVar, Union
+
+from .helpers import slope_from_file
+
+
+def calc_cond(slope, temp=300, boxl=48.):
+    # assumes slope in e^2Angstrom^2/ps
+    # assumes temp in K
+    # assumes boxl in Angstrom
+    # returns conductivty in S/m
+    k_b = 1.38065e-23 #J/K
+    eV = 1.60218e-19
+    vol_m3 = (boxl*1e-10)**3 
+    prefactor = 1/(6*vol_m3*k_b*temp)
+    slope_SI = slope * eV * eV * 1e-10 * 1e-10 / 1e-12
+    #Only working for IM1H OAC system with 1000 molecules
+    #conductivity = ( 1.602176634 * slope ) / (6 * 8.617332478 * 10**-8 * temp * boxl**3 )
+    conductivity_Sm = prefactor * slope_SI
+    return conductivity_Sm
+
+def conductivity_from_file(filename: Path, xmin: int = None, xmax: int = None, boxl: float = 48., temperature: float = 300., verbose=False, unit="mS/cm"):
+    slope = slope_from_file(filename, xmin = None, xmax = None, verbose=False)
+    conductivity_Sm = calc_cond(slope, temperature, boxl)
+    if unit=="mS/cm":
+        return conductivity_Sm * 10
+    #assume base unit S/m    
+    return conductivity_Sm
+    
 
 
 class Charges:
