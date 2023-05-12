@@ -23,7 +23,7 @@ def calc_cond(slope, temp=300, boxl=48.):
     return conductivity_Sm
 
 def conductivity_from_file(filename: Path, xmin: int = None, xmax: int = None, boxl: float = 48., temperature: float = 300., verbose=False, unit="mS/cm"):
-    slope = slope_from_file(filename, xmin = None, xmax = None, verbose=False)
+    slope = slope_from_file(filename, xmin=xmin, xmax=xmax, verbose=verbose)
     conductivity_Sm = calc_cond(slope, temperature, boxl)
     if unit=="mS/cm":
         return conductivity_Sm * 10
