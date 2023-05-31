@@ -84,10 +84,18 @@ def combine_fit_results(inputclasses: list[InputClass], save_path=".", temperatu
                          "smoothing": smoothing}
     for inputclass in inputclasses:
         gendicon_dict = inputclass.to_gendicon_input()
-        combined_input_dict["correlations"].update(gendicon_dict["correlations"])
-
-        #add it to the spectrum output
+        #combined_input_dict["correlations"].update(gendicon_dict["correlations"])
+        
         if "mdmd" in gendicon_dict["correlations"].keys():
+            #check if key already exists, otherwise add it
+            try:
+                combined_input_dict["correlations"]["mdmd"].append(gendicon_dict["correlations"]["mdmd"][0])
+            except KeyError:
+                combined_input_dict["correlations"]["mdmd"] = []
+                combined_input_dict["correlations"]["mdmd"].append(gendicon_dict["correlations"]["mdmd"][0])
+
+
+            #add it to the spectrum output
             name = inputclass.name.lower()
             new_data = {"key": name, 
                         "out": f"{save_path}/epsilon_{name}_{name_identifier}.dat",
@@ -97,6 +105,14 @@ def combine_fit_results(inputclasses: list[InputClass], save_path=".", temperatu
             if mdmd_all:
                 mdmd_all_dict["mdmd"].append(name)
         elif "deltamj2" in gendicon_dict["correlations"].keys():
+            #check if key already exists, otherwise add it
+            try:
+                combined_input_dict["correlations"]["deltamj2"].append(gendicon_dict["correlations"]["deltamj2"][0])
+            except KeyError:
+                combined_input_dict["correlations"]["deltamj2"] = []
+                combined_input_dict["correlations"]["deltamj2"].append(gendicon_dict["correlations"]["deltamj2"][0])
+
+            #add it to the spectrum output    
             new_data = {"key": "all", 
                         "out": f"{save_path}/theta_{name_identifier}.dat",
                         "deltamj2": ["all"],
