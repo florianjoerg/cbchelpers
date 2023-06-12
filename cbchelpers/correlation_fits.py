@@ -352,10 +352,11 @@ class LineClass:
 #################################################################################
 class DataClass:
 #################################################################################
-    def __init__(self):
+    def __init__(self, verbose=True):
         self.time = []
         self.f    = []
         self.derivative = []
+        self.verbose = verbose
 
     def fromFile(self,filename,maxtime):
         try:
@@ -382,7 +383,8 @@ class DataClass:
         ###################################################################
         # "Numerische Methoden" J. Douglas Faiers / R.L. Burden, p. 168
         ###################################################################
-        print('\n> Computing derivative of the time series ...')
+        if self.verbose:
+            print('\n> Computing derivative of the time series ...')
         h = self.time[1] - self.time[0]
         tmp_derivative = []
         
@@ -465,9 +467,8 @@ def residual_msdmj(parfit, t, number_of_exp, fdata=None, ddata = None):
 
 def fit(input: InputClass, json_file: str | None = None, verbose=True) -> FitResults:
     with_slope = hasattr(input.line, "slope") # is not None
-    print(with_slope)
     # Generating data object
-    data = DataClass()
+    data = DataClass(verbose=verbose)
     data.fromFile(input.infile,input.maxtime)
     data.compute_derivative()
 
