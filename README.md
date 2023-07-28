@@ -9,7 +9,7 @@ Various functions and methods to facilitate my work
 
 ### Copyright
 
-Copyright (c) 2022, Florian Joerg
+Copyright (c) 2023, Florian Joerg
 
 
 #### Acknowledgements
