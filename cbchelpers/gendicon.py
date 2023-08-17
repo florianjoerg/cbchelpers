@@ -121,8 +121,8 @@ def combine_fit_results(inputclasses: list[InputClass], save_path=".", temperatu
         #extract boxlength if msdmj is given
         #boxlength = 
         
-
-    epsilon.append(mdmd_all_dict)
+    if mdmd_all:
+        epsilon.append(mdmd_all_dict)
 
     gendicon_part = {"spectrum": {}}
     gendicon_part["spectrum"]["prefactor"] = [{"temperature": temperature, "boxlength": boxlength, "boxtype": boxtype}]

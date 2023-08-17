@@ -497,6 +497,9 @@ def fit(input: InputClass, json_file: str | None = None, verbose=True) -> FitRes
         else:
             max_tau = 0.5*float((i+1)/input.number_of_exp)*data.time[-1]
 
+        if max_tau <= min_tau:
+            max_tau = min_tau+0.01*min_tau
+            warnings.warn(f"max_tau was <= min_tau, changed")
         parfit.add('tau'+str(i+1), value = exp.tau, vary = exp.tau_vary, min = min_tau, max = max_tau)
             
     if verbose:   
