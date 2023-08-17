@@ -1,10 +1,13 @@
-from enum import Enum
-import warnings
 import inspect
+import warnings
+from enum import Enum
+
 #import sys
 import matplotlib as mpl
 
+
 class UniColors(Enum):
+
     @staticmethod
     def _register(name, colors):
         my_cmap = mpl.colors.LinearSegmentedColormap.from_list(name, colors)
@@ -66,7 +69,17 @@ class UniColors(Enum):
 
 UniColors._build()
     
-        
+class UniColorsContext:
+    #define enter and exit to use it as context manager, i.e.:
+    # with UniColors:
+    #   plt.plot(...) #uses as color the uni colors
+    def __enter__(self):
+        self.original_colors = mpl.rcParams['axes.prop_cycle']
+        mpl.rcParams['axes.prop_cycle'] = mpl.cycler(color=UniColors.defaultcolors)
+
+    def __exit__(self, exc_type, exc_value, exc_tb):
+        mpl.rcParams['axes.prop_cycle'] = self.original_colors
+
 
 def test_defaultcolors():
     #uc = UniColors()
