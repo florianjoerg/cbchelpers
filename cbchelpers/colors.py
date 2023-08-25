@@ -42,6 +42,9 @@ class UniColors(Enum):
     BLACK = '#000000'    # black
     WHITE = '#ffffff' # white
 
+    # _ignore_ = ["_original_colors"]
+    # _original_colors = mpl.rcParams['axes.prop_cycle']
+
     @classmethod
     def show(cls, short=False) -> None:
         for name, value in map(lambda x: (x.name,x.value), cls._member_map_.values()):
@@ -64,8 +67,12 @@ class UniColors(Enum):
 
     @classmethod
     def set_as_default(cls) -> None:
-        import matplotlib
-        matplotlib.rcParams['axes.prop_cycle'] = matplotlib.cycler(color=cls.defaultcolors)
+        mpl.rcParams['axes.prop_cycle'] = mpl.cycler(color=cls.defaultcolors)
+    
+    # does not work why???
+    # @classmethod
+    # def unset_as_default(cls) -> None:
+    #     mpl.rcParams['axes.prop_cycle'] = cls._original_colors
 
 UniColors._build()
     
