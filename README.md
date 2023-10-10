@@ -1,9 +1,13 @@
-cbchelpers
-==============================
 [//]: # (Badges)
-[![GitHub Actions Build Status](https://github.com/REPLACE_WITH_OWNER_ACCOUNT/cbchelpers/workflows/CI/badge.svg)](https://github.com/REPLACE_WITH_OWNER_ACCOUNT/cbchelpers/actions?query=workflow%3ACI)
+[//]: <[![GitHub Actions Build Status](https://github.com/REPLACE_WITH_OWNER_ACCOUNT/cbchelpers/workflows/CI/badge.svg)](https://github.com/REPLACE_WITH_OWNER_ACCOUNT/cbchelpers/actions?query=workflow%3ACI)>
 
 [//]: <[![codecov](https://codecov.io/gh/REPLACE_WITH_OWNER_ACCOUNT/cbchelpers/branch/main/graph/badge.svg)](https://codecov.io/gh/REPLACE_WITH_OWNER_ACCOUNT/cbchelpers/branch/main)>
+
+<p align="center">
+ <a href="https://florianjoerg.github.io/cbchelpers" target="_blank" rel="noopener noreferrer">
+  <img src="https://github.com/florianjoerg/cbchelpers/blob/main/assets/cbchelpers_logo.png" alt="CBCHelpers Logo" width="400"/>
+ </a>
+</p>
 
 Various functions and methods to facilitate my work
 
