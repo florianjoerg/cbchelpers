@@ -7,6 +7,12 @@ cbchelpers
 
 Various functions and methods to facilitate my work
 
+### Installation
+
+```python
+pip install cbchelpers
+```
+
 ### Copyright
 
 Copyright (c) 2023, Florian Joerg
