@@ -4,7 +4,7 @@
 [//]: <[![codecov](https://codecov.io/gh/REPLACE_WITH_OWNER_ACCOUNT/cbchelpers/branch/main/graph/badge.svg)](https://codecov.io/gh/REPLACE_WITH_OWNER_ACCOUNT/cbchelpers/branch/main)>
 
 <p align="center">
- <a href="https://florianjoerg.github.io/cbchelpers" target="_blank" rel="noopener noreferrer">
+ <a href="https://github.com/florianjoerg/cbchelpers/blob/main/assets/cbchelpers_logo.png" target="_blank" rel="noopener noreferrer">
   <img src="https://github.com/florianjoerg/cbchelpers/blob/main/assets/cbchelpers_logo.png" alt="CBCHelpers Logo" width="400"/>
  </a>
 </p>
