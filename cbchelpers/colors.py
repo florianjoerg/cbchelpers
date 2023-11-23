@@ -183,11 +183,45 @@ class MedUniColors(Enum):
         )
 
     @classmethod
+    @property
+    def lightblues(cls) -> list:
+        return (
+            cls.LIGHTBLUE.value,
+            cls.LIGHTBLUE1.value,
+            cls.LIGHTBLUE2.value,
+            cls.LIGHTBLUE3.value,
+            cls.LIGHTBLUE4.value,
+        )
+
+    @classmethod
+    @property
+    def greens(cls) -> list:
+        return (
+            cls.GREEN.value,
+            cls.GREEN1.value,
+            cls.GREEN2.value,
+            cls.GREEN3.value,
+            cls.GREEN4.value,
+        )
+
+    @classmethod
+    @property
+    def corals(cls) -> list:
+        return (
+            cls.CORAL.value,
+            cls.CORAL1.value,
+            cls.CORAL2.value,
+            cls.CORAL3.value,
+            cls.CORAL4.value,
+        )
+
+    @classmethod
     def set_as_default(cls) -> None:
         mpl.rcParams["axes.prop_cycle"] = mpl.cycler(color=cls.defaultcolors)
 
 
 UniColors._build()
+MedUniColors._build()
 
 
 class UniColorsContext:
