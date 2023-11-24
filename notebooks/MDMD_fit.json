@@ -1,0 +1,19 @@
+{
+	"data":      "corr_all.dat", 
+	"residuals": "corr_all_fit.dat",
+	"maxtime":   1000,
+
+	"initialexp":
+	[
+		{ "a": {"value":   14.15406, "vary": true}, "tau": {"value":    0.17804, "vary": true} },
+		{ "a": {"value":    3.21456, "vary": true}, "tau": {"value":    6.44233, "vary": true} },
+		{ "a": {"value":   28.78433, "vary": true}, "tau": {"value": 1021.28872, "vary": true} }
+	],
+
+	"exp":
+	[
+		{ "a": {"value":    1.21455, "vary": true}, "tau": {"value":    1.44160, "vary": true} },
+		{ "a": {"value":    3.21455, "vary": true}, "tau": {"value":    6.44160, "vary": true} },
+		{ "a": {"value":   28.78434, "vary": true}, "tau": {"value": 1021.27942, "vary": true} }
+	]
+}

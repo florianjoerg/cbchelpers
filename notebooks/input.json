@@ -1,0 +1,70 @@
+{
+    "correlations": {
+        "mdmd": [
+            {
+                "key": "all",
+                "file": [
+                    {
+                        "in": "corr_all.dat",
+                        "residuals": false
+                    }
+                ],
+                "fitfunction": [
+                    {
+                        "id": "exp",
+                        "a": 1.21455,
+                        "tau": 1.44160,
+                        "a0": 0.0
+                    },
+                    {
+                        "id": "exp",
+                        "a": 3.21455,
+                        "tau": 6.44160,
+                        "a0": 0.0
+                    },
+                    {
+                        "id": "exp",
+                        "a": 28.78434,
+                        "tau": 1021.27942,
+                        "a0": 0.0
+                    }
+                ]
+            }
+        ]
+    },
+    "spectrum": {
+        "prefactor": [
+            {
+                "temperature": 300,
+                "boxlength": 48.61,
+                "boxtype": "cubic"
+            }
+        ],
+        "frequency": [
+            {
+                "type": "nue",
+                "unit": "THz",
+                "Min": 1e-05,
+                "Max": 50.0,
+                "logscale": true
+            }
+        ],
+        "epsilon": [
+            {
+                "key": "all",
+                "out": "epsilon_all.dat",
+                "mdmd": [
+                    "all"
+                ],
+                "smoothing": true
+            }
+        ],
+        "gendicon": [
+            {
+                "key": "all",
+                "out": "gd_all_1.dat",
+                "smoothing": true
+            }
+        ]
+    }
+}
